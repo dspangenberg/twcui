@@ -73,7 +73,11 @@ describe('FormGroup', () => {
   })
 
   it('applies custom titleClass when provided', () => {
-    render(<FormGroup title="Test Title" titleClass="custom-title-class">Content</FormGroup>)
+    render(
+      <FormGroup title="Test Title" titleClass="custom-title-class">
+        Content
+      </FormGroup>
+    )
     const titleElement = screen.getByText('Test Title')
     expect(titleElement).toHaveClass('custom-title-class')
   })

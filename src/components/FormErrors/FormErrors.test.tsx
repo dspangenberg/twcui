@@ -72,4 +72,3 @@ describe('FormErrors', () => {
     expect(container).toBeEmptyDOMElement()
   })
 })
-

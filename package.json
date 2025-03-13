@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "pnpm biome lint ./src",
+    "lint": "pnpm biome lint src",
     "lint:fix": "pnpm biome lint --write ./src",
     "format": "pnpm biome format ./src",
     "format:fix": "pnpm biome format --write ./src",
@@ -17,9 +17,7 @@
   },
   "module": "./dist/main.js",
   "exports": "./dist/main.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "types": "./dist/main.d.ts",
   "peerDependencies": {
     "@radix-ui/react-slot": "^1.1.2",

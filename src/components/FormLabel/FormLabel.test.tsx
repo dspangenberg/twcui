@@ -79,7 +79,11 @@ describe('FormLabel', () => {
   })
 
   it('combines value and required props', () => {
-    render(<FormLabel value="Label Text" required>Fallback Text</FormLabel>)
+    render(
+      <FormLabel value="Label Text" required>
+        Fallback Text
+      </FormLabel>
+    )
     expect(screen.getByText('Label Text:')).toBeInTheDocument()
     expect(screen.getByText('*')).toBeInTheDocument()
     expect(screen.queryByText('Fallback Text')).not.toBeInTheDocument()
@@ -90,11 +94,10 @@ describe('FormLabel', () => {
   it('handles null/undefined value prop correctly', () => {
     render(<FormLabel value={undefined}>Children Text</FormLabel>)
     expect(screen.getByText('Children Text')).toBeInTheDocument()
-    
+
     // Re-render with null value
     cleanup()
     render(<FormLabel value={null}>Children Text</FormLabel>)
     expect(screen.getByText('Children Text')).toBeInTheDocument()
   })
 })
-

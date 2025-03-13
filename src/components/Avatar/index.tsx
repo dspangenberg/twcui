@@ -51,11 +51,10 @@ export function Avatar({ fullname = '', initials = '', src = '', className = '' 
     }
   }, [fullname])
 
-
   return (
     <div className="border rounded-full border-border" data-testid="avatar-container">
-      <ShadcnAvatar 
-        className={cn('size-9 rounded-full border-transparent border-2', className)} 
+      <ShadcnAvatar
+        className={cn('size-9 rounded-full border-transparent border-2', className)}
         data-testid="avatar"
       >
         <ShadcnAvatarImage src={src} alt={fullname} />

@@ -6,4 +6,3 @@ export function getIdealTextColor(bgColor: string): string {
   const brightness = (r * 299 + g * 587 + b * 114) / 1000
   return brightness > 125 ? '#000000' : '#FFFFFF'
 }
-

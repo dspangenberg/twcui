@@ -68,22 +68,22 @@ describe('Avatar', () => {
   })
   it('verifies text color follows contrast rule for light backgrounds', () => {
     render(<Avatar fullname="Test User Light" initials="TL" />)
-    
+
     const fallback = screen.getByText('TL')
     const backgroundColor = fallback.style.backgroundColor
     const textColor = fallback.style.color
-    
+
     // Parse RGB values from the background color (format: "rgb(r, g, b)")
     const rgbMatch = backgroundColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
     expect(rgbMatch).not.toBeNull()
-    
-    const r = parseInt(rgbMatch![1])
-    const g = parseInt(rgbMatch![2])
-    const b = parseInt(rgbMatch![3])
-    
+
+    const r = Number.parseInt(rgbMatch?.[1])
+    const g = Number.parseInt(rgbMatch?.[2])
+    const b = Number.parseInt(rgbMatch?.[3])
+
     // Calculate brightness using the same formula as the component
     const brightness = (r * 299 + g * 587 + b * 114) / 1000
-    
+
     // Assert text color follows the contrast rule
     if (brightness > 125) {
       expect(textColor).toBe('rgb(0, 0, 0)') // Black for light backgrounds
@@ -94,22 +94,22 @@ describe('Avatar', () => {
 
   it('verifies text color follows contrast rule for dark backgrounds', () => {
     render(<Avatar fullname="Test User Dark" initials="TD" />)
-    
+
     const fallback = screen.getByText('TD')
     const backgroundColor = fallback.style.backgroundColor
     const textColor = fallback.style.color
-    
+
     // Parse RGB values from the background color (format: "rgb(r, g, b)")
     const rgbMatch = backgroundColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)
     expect(rgbMatch).not.toBeNull()
-    
-    const r = parseInt(rgbMatch![1])
-    const g = parseInt(rgbMatch![2])
-    const b = parseInt(rgbMatch![3])
-    
+
+    const r = Number.parseInt(rgbMatch?.[1])
+    const g = Number.parseInt(rgbMatch?.[2])
+    const b = Number.parseInt(rgbMatch?.[3])
+
     // Calculate brightness using the same formula as the component
     const brightness = (r * 299 + g * 587 + b * 114) / 1000
-    
+
     // Assert text color follows the contrast rule
     if (brightness > 125) {
       expect(textColor).toBe('rgb(0, 0, 0)') // Black for light backgrounds
@@ -121,18 +121,18 @@ describe('Avatar', () => {
   it('applies correct text color based on background brightness', () => {
     // Using a string that generates a known light background color
     const { container: lightContainer } = render(
-      <Avatar 
-        fullname="LIGHT"  // Using a longer string to get more predictable results
+      <Avatar
+        fullname="LIGHT" // Using a longer string to get more predictable results
         initials="LI"
       />
     )
-    
+
     const lightFallback = lightContainer.querySelector('[data-slot="avatar-fallback"]')
     // Debug the actual styles
     console.log('Light background styles:', window.getComputedStyle(lightFallback).backgroundColor)
     const lightBgColor = window.getComputedStyle(lightFallback).backgroundColor
     const lightTextColor = window.getComputedStyle(lightFallback).color
-    
+
     // Expect the appropriate text color based on the actual background
     if (lightBgColor.includes('255, 255, 255') || lightBgColor.includes('240, 240')) {
       expect(lightFallback).toHaveStyle({
@@ -147,13 +147,8 @@ describe('Avatar', () => {
     cleanup()
 
     // Using a string that generates a known dark background color
-    const { container: darkContainer } = render(
-      <Avatar 
-        fullname="DARK"
-        initials="DA"
-      />
-    )
-    
+    const { container: darkContainer } = render(<Avatar fullname="DARK" initials="DA" />)
+
     const darkFallback = darkContainer.querySelector('[data-slot="avatar-fallback"]')
     console.log('Dark background styles:', window.getComputedStyle(darkFallback).backgroundColor)
     const darkBgColor = window.getComputedStyle(darkFallback).backgroundColor
@@ -162,6 +157,3 @@ describe('Avatar', () => {
     })
   })
 })
-
-
-
