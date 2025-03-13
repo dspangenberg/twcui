@@ -60,8 +60,11 @@ export function Avatar({ fullname = '', initials = '', src = '', className = '' 
   }
 
   return (
-    <div className="border rounded-full border-border">
-      <ShadcnAvatar className={cn('size-9 rounded-full border-transparent border-2', className)}>
+    <div className="border rounded-full border-border" data-testid="avatar-container">
+      <ShadcnAvatar 
+        className={cn('size-9 rounded-full border-transparent border-2', className)} 
+        data-testid="avatar"
+      >
         <ShadcnAvatarImage src={src} alt={fullname} />
         <ShadcnAvatarFallback
           style={{ backgroundColor, color: textColor }}

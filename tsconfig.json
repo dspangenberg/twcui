@@ -2,8 +2,12 @@
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
-  }
+    },
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src/**/*", "src/global.d.ts"]
 }

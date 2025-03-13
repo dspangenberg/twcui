@@ -7,6 +7,8 @@ interface ComponentProps extends React.ComponentProps<'button'> {
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
   size?: 'default' | 'sm' | 'lg' | 'icon'
   loading?: boolean
+  asChild?: boolean
+  className?: string
 }
 
 export function Button({
@@ -14,13 +16,22 @@ export function Button({
   size = 'default',
   type = 'button',
   loading = false,
+  className = '',
+  asChild = false,
   children,
   ...props
 }: ComponentProps) {
   const disabled = loading || props.disabled
 
   return (
-    <ShadcnButton variant={variant} size={size} disabled={disabled} type={type} {...props}>
+    <ShadcnButton
+      className={className}
+      variant={variant}
+      size={size}
+      disabled={disabled}
+      type={type}
+      {...props}
+    >
       {loading && <LoaderCircleIcon className="-ms-1 animate-spin" size={16} aria-hidden="true" />}
       {children}
     </ShadcnButton>

@@ -5,6 +5,53 @@
 @custom-variant dark (&:is(.dark *));
 @source "../node_modules/twcui";
 
+@theme {
+  --grid-template-columns-6: repeat(6, minmax(0, 1fr));
+  --grid-template-columns-16: repeat(16, minmax(0, 1fr));
+  --grid-template-columns-24: repeat(24, minmax(0, 1fr));
+  --grid-template-columns-32: repeat(32, minmax(0, 1fr));
+
+  --grid-column-span-13: span 13 / span 13;
+  --grid-column-span-14: span 14 / span 14;
+  --grid-column-span-15: span 15 / span 15;
+  --grid-column-span-16: span 16 / span 16;
+  --grid-column-span-17: span 17 / span 17;
+  --grid-column-span-18: span 18 / span 18;
+  --grid-column-span-19: span 19 / span 19;
+  --grid-column-span-20: span 20 / span 20;
+  --grid-column-span-21: span 21 / span 21;
+  --grid-column-span-22: span 22 / span 22;
+  --grid-column-span-23: span 23 / span 23;
+  --grid-column-span-24: span 24 / span 24;
+  --grid-column-span-25: span 25 / span 25;
+  --grid-column-span-26: span 26 / span 26;
+  --grid-column-span-28: span 28 / span 28;
+  --grid-column-span-32: span 32 / span 32;
+
+  --grid-column-start-13: 13;
+  --grid-column-start-14: 14;
+  --grid-column-start-15: 15;
+  --grid-column-start-16: 16;
+  --grid-column-start-17: 17;
+  --grid-column-start-18: 18;
+  --grid-column-start-19: 19;
+  --grid-column-start-20: 20;
+  --grid-column-start-21: 21;
+  --grid-column-start-22: 22;
+  --grid-column-start-23: 23;
+  --grid-column-start-24: 24;
+  --grid-column-start-25: 25;
+  --grid-column-start-26: 26;
+  --grid-column-start-27: 27;
+  --grid-column-start-28: 28;
+  --grid-column-start-29: 29;
+  --grid-column-start-30: 30;
+  --grid-column-start-31: 31;
+  --grid-column-start-32: 32;
+  --grid-column-start-33: 33;
+  --grid-column-start-34: 34;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

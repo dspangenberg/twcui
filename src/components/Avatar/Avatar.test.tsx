@@ -1,49 +1,66 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, it, vi } from 'vitest'
-import { MyButton } from '.'
+import { render, screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+import { Avatar } from './index'
 
-describe('MyButton test:', () => {
-  afterEach(cleanup)
-
-  it('should render component', () => {
-    render(<MyButton label="Testing" />)
+describe('Avatar', () => {
+  it('renders with image when src is provided', () => {
+    render(<Avatar fullname="John Doe" initials="JD" src="/path/to/image.jpg" />)
+    const avatarElement = screen.getByTestId('avatar')
+    expect(avatarElement).toBeInTheDocument()
   })
 
-  it('should render label', () => {
-    render(<MyButton label="Testing" />)
-    screen.getByText('Testing')
+  it('renders initials when no src is provided', () => {
+    render(<Avatar fullname="John Doe" initials="JD" />)
+    expect(screen.getByText('JD')).toBeInTheDocument()
   })
 
-  it('should be disabled', () => {
-    render(<MyButton label="Testing" disabled />)
-    expect(screen.getByRole('button')).toBeDisabled()
+  it('generates background color based on fullname', () => {
+    render(<Avatar fullname="John Doe" initials="JD" />)
+    const fallback = screen.getByText('JD')
+    const backgroundColor = fallback.style.backgroundColor
+    expect(backgroundColor).toBeTruthy()
+    expect(backgroundColor).not.toBe('')
   })
 
-  it('onClick triggers properly', async () => {
-    const mockFn = vi.fn()
+  it('generates different colors for different names', () => {
+    const { rerender } = render(<Avatar fullname="John Doe" initials="JD" />)
+    const color1 = screen.getByText('JD').style.backgroundColor
 
-    render(<MyButton onClick={mockFn} label="Testing" />)
+    rerender(<Avatar fullname="Jane Smith" initials="JS" />)
+    const color2 = screen.getByText('JS').style.backgroundColor
 
-    expect(mockFn).toHaveBeenCalledTimes(0)
-
-    fireEvent.click(screen.getByRole('button'))
-
-    expect(mockFn).toHaveBeenCalledTimes(1)
+    expect(color1).not.toBe(color2)
   })
 
-  it('disabled prevents action', async () => {
-    const mockFn = vi.fn()
-
-    render(<MyButton onClick={mockFn} label="Testing" disabled />)
-
-    expect(mockFn).toHaveBeenCalledTimes(0)
-
-    fireEvent.click(screen.getByRole('button'))
-
-    expect(mockFn).toHaveBeenCalledTimes(0)
+  it('applies custom className', () => {
+    render(<Avatar fullname="John Doe" initials="JD" className="custom-class" />)
+    const avatarElement = screen.getByTestId('avatar')
+    expect(avatarElement).toHaveClass('custom-class')
   })
 
-  // https://github.com/vitest-dev/vitest/blob/main/examples/react-testing-lib/src/components/Spinner.test.tsx
+  it('renders with default props when no props are provided', () => {
+    render(<Avatar />)
+    const avatarElement = screen.getByTestId('avatar')
+    expect(avatarElement).toBeInTheDocument()
+  })
 
-  // https://testing-library.com/docs/react-testing-library/example-intro
+  it('generates text color based on background color', () => {
+    render(<Avatar fullname="John Doe" initials="JD" />)
+    const fallback = screen.getByText('JD')
+    const color = fallback.style.color
+    expect(color).toBeTruthy()
+    expect(color).not.toBe('')
+  })
+
+  it('renders within a border container', () => {
+    render(<Avatar fullname="John Doe" initials="JD" />)
+    const container = screen.getByTestId('avatar-container')
+    expect(container).toHaveClass('border', 'rounded-full', 'border-border')
+  })
+
+  it('renders with fallback when image fails to load', () => {
+    render(<Avatar src="invalid-image-url" initials="JD" />)
+    const fallback = screen.getByText('JD')
+    expect(fallback).toBeInTheDocument()
+  })
 })
