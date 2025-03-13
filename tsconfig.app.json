@@ -23,8 +23,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "emitDeclarationOnly": true
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }
