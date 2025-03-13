@@ -13,7 +13,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "prepublishOnly": "vitest run && npm run build"
+    "prepublishOnly": "vitest run && pnpm run build"
   },
   "module": "./dist/main.js",
   "exports": "./dist/main.js",
@@ -57,8 +57,6 @@
   },
   "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b",
   "dependencies": {
-    "@fontsource-variable/jetbrains-mono": "^5.2.5",
-    "@fontsource/clear-sans": "^5.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.479.0",
