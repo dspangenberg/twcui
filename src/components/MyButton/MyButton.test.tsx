@@ -6,33 +6,23 @@ describe('MyButton test:', () => {
   afterEach(cleanup)
 
   it('should render component', () => {
-    render(<MyButton label='Testing' />)
+    render(<MyButton label="Testing" />)
   })
 
   it('should render label', () => {
-    render(<MyButton label='Testing' />)
+    render(<MyButton label="Testing" />)
     screen.getByText('Testing')
   })
 
   it('should be disabled', () => {
-    render(
-      <MyButton
-        label='Testing'
-        disabled
-      />
-    )
+    render(<MyButton label="Testing" disabled />)
     expect(screen.getByRole('button')).toBeDisabled()
   })
 
   it('onClick triggers properly', async () => {
     const mockFn = vi.fn()
 
-    render(
-      <MyButton
-        onClick={mockFn}
-        label='Testing'
-      />
-    )
+    render(<MyButton onClick={mockFn} label="Testing" />)
 
     expect(mockFn).toHaveBeenCalledTimes(0)
 
@@ -44,13 +34,7 @@ describe('MyButton test:', () => {
   it('disabled prevents action', async () => {
     const mockFn = vi.fn()
 
-    render(
-      <MyButton
-        onClick={mockFn}
-        label='Testing'
-        disabled
-      />
-    )
+    render(<MyButton onClick={mockFn} label="Testing" disabled />)
 
     expect(mockFn).toHaveBeenCalledTimes(0)
 

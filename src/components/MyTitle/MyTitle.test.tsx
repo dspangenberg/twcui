@@ -6,11 +6,11 @@ describe('MyTitle test:', () => {
   afterEach(cleanup)
 
   it('should render component', () => {
-    render(<MyTitle title='Testing' />)
+    render(<MyTitle title="Testing" />)
   })
 
   it('should render title', () => {
-    render(<MyTitle title='Testing' />)
+    render(<MyTitle title="Testing" />)
     screen.getByText('Testing')
   })
 })

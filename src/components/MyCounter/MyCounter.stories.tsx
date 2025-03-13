@@ -7,14 +7,14 @@ const meta = {
   title: 'Components/MyCounter',
   component: MyCounter,
   parameters: {
-    layout: 'centered',
+    layout: 'centered'
   },
   tags: ['autodocs'],
   args: {
     initialValue: 0,
     step: 1,
-    onClick: fn(),
-  },
+    onClick: fn()
+  }
 } satisfies Meta<typeof MyCounter>
 
 export default meta
@@ -25,12 +25,12 @@ export const Default: Story = {}
 export const WithMinMax: Story = {
   args: {
     min: 0,
-    max: 10,
-  },
+    max: 10
+  }
 }
 
 export const CustomStep: Story = {
   args: {
-    step: 5,
-  },
+    step: 5
+  }
 }

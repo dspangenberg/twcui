@@ -2,9 +2,10 @@
 /// <reference types="vitest" />
 import path, { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
 import { globSync } from 'glob'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import { libInjectCss } from 'vite-plugin-lib-inject-css'
 
@@ -14,21 +15,27 @@ export default defineConfig({
     react(),
     // https://github.com/vitejs/vite/issues/1579#issuecomment-1483756199
     libInjectCss(),
+    tailwindcss(),
     dts({
       exclude: ['**/*.stories.tsx', 'src/test', '**/*.test.tsx'],
-      tsconfigPath: 'tsconfig.app.json',
-    }),
+      tsconfigPath: 'tsconfig.app.json'
+    })
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/main.ts'),
-      formats: ['es'],
+      formats: ['es']
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       // https://rollupjs.org/configuration-options/#input
       input: Object.fromEntries(
-        globSync(['src/components/**/index.tsx', 'src/main.ts']).map((file) => {
+        globSync(['src/components/**/index.tsx', 'src/main.ts']).map(file => {
           // This remove `src/` as well as the file extension from each
           // file, so e.g. src/nested/foo.js becomes nested/foo
           const entryName = path.relative(
@@ -47,10 +54,10 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'React-dom',
-          'react/jsx-runtime': 'react/jsx-runtime',
-        },
-      },
-    },
+          'react/jsx-runtime': 'react/jsx-runtime'
+        }
+      }
+    }
   },
   test: {
     globals: true,
@@ -61,7 +68,7 @@ export default defineConfig({
     css: true,
     coverage: {
       include: ['src/components'],
-      exclude: ['**/*.stories.tsx'],
-    },
-  },
+      exclude: ['**/*.stories.tsx']
+    }
+  }
 })

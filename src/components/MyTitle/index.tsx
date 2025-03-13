@@ -8,14 +8,11 @@ interface ComponentProps extends React.ComponentProps<'h1'> {
 
 export function MyTitle({ primary = false, title, ...props }: ComponentProps) {
   const style = clsx(styles.title, {
-    [styles['title--primary']]: primary,
+    [styles['title--primary']]: primary
   })
 
   return (
-    <h1
-      className={style}
-      {...props}
-    >
+    <h1 className={style} {...props}>
       {title}
     </h1>
   )

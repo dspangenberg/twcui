@@ -10,15 +10,11 @@ interface ComponentProps extends React.ComponentProps<'button'> {
 export function MyButton({ primary = false, size = 'medium', label, ...props }: ComponentProps) {
   const style = clsx(styles.button, {
     [styles['button--primary']]: primary,
-    [styles[`button--${size}`]]: size,
+    [styles[`button--${size}`]]: size
   })
 
   return (
-    <button
-      type='button'
-      className={style}
-      {...props}
-    >
+    <button type="button" className={style} {...props}>
       {label}
     </button>
   )

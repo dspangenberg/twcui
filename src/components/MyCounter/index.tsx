@@ -12,17 +12,17 @@ interface CounterProps extends React.ComponentProps<'button'> {
 export function MyCounter({
   initialValue = 0,
   step = 1,
-  min = -Infinity,
-  max = Infinity,
+  min = Number.NEGATIVE_INFINITY,
+  max = Number.POSITIVE_INFINITY
 }: CounterProps) {
   const [count, setCount] = useState(initialValue)
 
   const increment = () => {
-    setCount((prev) => Math.min(prev + step, max))
+    setCount(prev => Math.min(prev + step, max))
   }
 
   const decrement = () => {
-    setCount((prev) => Math.max(prev - step, min))
+    setCount(prev => Math.max(prev - step, min))
   }
 
   const reset = () => {
@@ -32,21 +32,9 @@ export function MyCounter({
   return (
     <section className={styles.container}>
       <p className={styles.text}>Count: {count}</p>
-      <MyButton
-        label='Increment'
-        onClick={increment}
-        disabled={count >= max}
-      />
-      <MyButton
-        label='Decrement'
-        onClick={decrement}
-        disabled={count <= min}
-      />
-      <MyButton
-        label='Reset'
-        onClick={reset}
-        primary={true}
-      />
+      <MyButton label="Increment" onClick={increment} disabled={count >= max} />
+      <MyButton label="Decrement" onClick={decrement} disabled={count <= min} />
+      <MyButton label="Reset" onClick={reset} primary={true} />
     </section>
   )
 }
