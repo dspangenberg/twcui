@@ -77,4 +77,16 @@ describe('FormGroup', () => {
     const titleElement = screen.getByText('Test Title')
     expect(titleElement).toHaveClass('custom-title-class')
   })
+
+  it('applies not-first:mt-2 class when margin is false', () => {
+    const { container } = render(<FormGroup margin={false}>Content</FormGroup>)
+    const innerDiv = container.querySelector('div > div > div') as HTMLElement
+    expect(innerDiv).toBeInTheDocument()
+    expect(innerDiv).toHaveClass('not-first:mt-2')
+  })
+
+  it('does not apply w-full class when fullWidth is false', () => {
+    const { container } = render(<FormGroup fullWidth={false}>Content</FormGroup>)
+    expect(container.querySelector('.w-full')).not.toBeInTheDocument()
+  })
 })

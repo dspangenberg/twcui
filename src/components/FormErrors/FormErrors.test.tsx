@@ -61,4 +61,15 @@ describe('FormErrors', () => {
       expect(item).toHaveTextContent(Object.values(errors)[index])
     })
   })
+
+  it('renders nothing when errors prop is undefined', () => {
+    const { container } = render(<FormErrors errors={undefined} />)
+    expect(container).toBeEmptyDOMElement()
+  })
+
+  it('renders nothing when errors prop is null', () => {
+    const { container } = render(<FormErrors errors={null as any} />)
+    expect(container).toBeEmptyDOMElement()
+  })
 })
+

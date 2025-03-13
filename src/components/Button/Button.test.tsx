@@ -59,4 +59,51 @@ describe('Button', () => {
     expect(screen.getByText('Icon')).toBeInTheDocument()
     expect(screen.getByText('Button Text')).toBeInTheDocument()
   })
+
+  it('displays loading icon when loading prop is true', () => {
+    render(<Button loading>Loading Button</Button>)
+    const button = screen.getByRole('button', { name: 'Loading Button' })
+    const loaderIcon = button.querySelector('svg.animate-spin')
+    expect(loaderIcon).toBeInTheDocument()
+    expect(loaderIcon).toHaveClass('animate-spin')
+    expect(loaderIcon).toHaveAttribute('aria-hidden', 'true')
+  })
+
+  it('disables the button when loading prop is true', () => {
+    render(<Button loading>Loading Button</Button>)
+    const button = screen.getByRole('button', { name: 'Loading Button' })
+    expect(button).toBeDisabled()
+  })
+
+  it('applies correct button type attribute', () => {
+    render(<Button type="submit">Submit Button</Button>)
+    const submitButton = screen.getByRole('button', { name: 'Submit Button' })
+    expect(submitButton).toHaveAttribute('type', 'submit')
+
+    render(<Button type="reset">Reset Button</Button>)
+    const resetButton = screen.getByRole('button', { name: 'Reset Button' })
+    expect(resetButton).toHaveAttribute('type', 'reset')
+
+    render(<Button>Default Button</Button>)
+    const defaultButton = screen.getByRole('button', { name: 'Default Button' })
+    expect(defaultButton).toHaveAttribute('type', 'button')
+  })
+
+  it('remains disabled when both loading and disabled props are true', () => {
+    render(<Button loading disabled>Loading Disabled Button</Button>)
+    const button = screen.getByRole('button', { name: 'Loading Disabled Button' })
+    expect(button).toBeDisabled()
+  })
+
+  it('renders loading icon before children content', () => {
+    render(<Button loading>Loading Text</Button>)
+    const button = screen.getByRole('button', { name: 'Loading Text' })
+    const buttonHTML = button.innerHTML
+    
+    // Check that the SVG (loader icon) appears before the text content
+    const svgIndex = buttonHTML.indexOf('<svg')
+    const textIndex = buttonHTML.indexOf('Loading Text')
+    expect(svgIndex).toBeLessThan(textIndex)
+  })
 })
+

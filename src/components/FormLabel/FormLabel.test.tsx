@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { FormLabel } from '.'
 
@@ -58,4 +58,43 @@ describe('FormLabel', () => {
     const label = screen.getByText('Label')
     expect(label).toHaveClass('custom-class')
   })
+
+  it('renders with value prop and adds colon', () => {
+    render(<FormLabel value="Label Text">Fallback Text</FormLabel>)
+    expect(screen.getByText('Label Text:')).toBeInTheDocument()
+    expect(screen.queryByText('Fallback Text')).not.toBeInTheDocument()
+  })
+
+  it('renders with required prop and shows asterisk', () => {
+    render(<FormLabel required>Required Field</FormLabel>)
+    expect(screen.getByText('Required Field')).toBeInTheDocument()
+    expect(screen.getByText('*')).toBeInTheDocument()
+    expect(screen.getByText('*')).toHaveClass('text-red-600')
+  })
+
+  it('adds data-required attribute when required is true', () => {
+    render(<FormLabel required>Required Field</FormLabel>)
+    const label = screen.getByText('Required Field').closest('label')
+    expect(label).toHaveAttribute('data-required', 'true')
+  })
+
+  it('combines value and required props', () => {
+    render(<FormLabel value="Label Text" required>Fallback Text</FormLabel>)
+    expect(screen.getByText('Label Text:')).toBeInTheDocument()
+    expect(screen.getByText('*')).toBeInTheDocument()
+    expect(screen.queryByText('Fallback Text')).not.toBeInTheDocument()
+    const label = screen.getByText('Label Text:').closest('label')
+    expect(label).toHaveAttribute('data-required', 'true')
+  })
+
+  it('handles null/undefined value prop correctly', () => {
+    render(<FormLabel value={undefined}>Children Text</FormLabel>)
+    expect(screen.getByText('Children Text')).toBeInTheDocument()
+    
+    // Re-render with null value
+    cleanup()
+    render(<FormLabel value={null}>Children Text</FormLabel>)
+    expect(screen.getByText('Children Text')).toBeInTheDocument()
+  })
 })
+
