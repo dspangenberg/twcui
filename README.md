@@ -37,3 +37,5 @@ Check my post about this repository [here](https://victorlillo.dev/blog/react-ty
 | `build-storybook` | Build the Storybook `dist`.                                                        |
 |      `test`       | Run the tests with **Vitest** using `jsdom` and starts a **Vitest UI** dev server. |
 |    `coverage`     | Generate a coverage report, with **v8**.                                           |
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/dspangenberg/twcui?utm_source=oss&utm_medium=github&utm_campaign=dspangenberg%2Ftwcui&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
