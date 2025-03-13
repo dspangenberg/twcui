@@ -1,6 +1,6 @@
 {
-  "name": "twcui",
-  "version": "0.0.1",
+  "name": "@dspangenberg/twcui",
+  "version": "0.0.2",
   "type": "module",
   "homepage": "https://dspangenberg.github.io/twcui/",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "name": "Danny Spangenberg",
     "url": "https://twiceware.de"
   },
+   "repository": "github:dspangenberg/twcui",
   "scripts": {
     "build": "tsc && vite build",
     "lint": "pnpm biome lint src",
