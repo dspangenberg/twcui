@@ -26,7 +26,7 @@ function Checkbox({
             width="9"
             height="9"
             viewBox="0 0 9 9"
-            fill="red"
+            fill="currentcolor"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >

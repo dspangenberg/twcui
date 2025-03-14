@@ -1,6 +1,6 @@
 {
   "name": "@dspangenberg/twcui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "homepage": "https://dspangenberg.github.io/twcui/",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "name": "Danny Spangenberg",
     "url": "https://twiceware.de"
   },
-   "repository": "github:dspangenberg/twcui",
+  "repository": "github:dspangenberg/twcui",
   "scripts": {
     "build": "tsc && vite build",
     "lint": "pnpm biome lint src",
@@ -36,7 +36,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-label": "^2.1.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -75,8 +77,5 @@
     "vitest": "3.0.7"
   },
   "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b",
-  "dependencies": {
-    "@radix-ui/react-checkbox": "^1.1.4",
-    "@radix-ui/react-label": "^2.1.2"
-  }
+  "dependencies": {}
 }
