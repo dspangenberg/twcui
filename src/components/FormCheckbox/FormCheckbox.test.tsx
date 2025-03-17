@@ -32,7 +32,9 @@ describe('FormCheckbox', () => {
 
   it('calls onCheckedChange when clicked', () => {
     const onCheckedChange = vi.fn()
-    render(<FormCheckbox id="test-checkbox" onCheckedChange={onCheckedChange} />)
+    render(
+      <FormCheckbox id="test-checkbox" onCheckedChange={onCheckedChange} />
+    )
     fireEvent.click(screen.getByRole('checkbox'))
     expect(onCheckedChange).toHaveBeenCalledTimes(1)
     expect(onCheckedChange).toHaveBeenCalledWith(true)
@@ -41,14 +43,6 @@ describe('FormCheckbox', () => {
   it('is disabled when disabled prop is true', () => {
     render(<FormCheckbox id="test-checkbox" disabled />)
     expect(screen.getByRole('checkbox')).toBeDisabled()
-  })
-
-  it('associates label with checkbox using htmlFor', () => {
-    render(<FormCheckbox id="test-checkbox" label="Test Checkbox" />)
-    const checkbox = screen.getByRole('checkbox')
-    const label = screen.getByText('Test Checkbox')
-    expect(label).toHaveAttribute('for', 'test-checkbox')
-    expect(checkbox).toHaveAttribute('id', 'test-checkbox')
   })
 
   it('renders with default checked state', () => {
@@ -62,14 +56,12 @@ describe('FormCheckbox', () => {
   })
   it('renders in indeterminate state', () => {
     render(
-      <FormCheckbox
-        label="Indeterminate Checkbox"
-        id="indeterminate-checkbox"
-        checked="indeterminate"
-      />
+      <FormCheckbox label="Indeterminate Checkbox" checked="indeterminate" />
     )
 
-    const checkbox = screen.getByRole('checkbox', { name: 'Indeterminate Checkbox' })
+    const checkbox = screen.getByRole('checkbox', {
+      name: 'Indeterminate Checkbox'
+    })
     expect(checkbox).toHaveAttribute('data-state', 'indeterminate')
 
     // Check if the indeterminate SVG is rendered

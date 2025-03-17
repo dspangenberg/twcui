@@ -2,7 +2,7 @@ import {
   Avatar as ShadcnAvatar,
   AvatarFallback as ShadcnAvatarFallback,
   AvatarImage as ShadcnAvatarImage
-} from '@/components/ui/avatar'
+} from '@/components/ui/shadcn/avatar.tsx'
 import { getIdealTextColor } from '@/lib/colorUtils'
 import { cn } from '@/lib/utils'
 import type * as AvatarPrimitive from '@radix-ui/react-avatar'

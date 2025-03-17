@@ -1,8 +1,8 @@
 import { FormLabel } from '@/components/FormLabel'
-import { Input } from '@/components/ui/input'
+import { Input } from '@/components/ui/originui/input.tsx'
+import { cn } from '@/lib/utils'
 import type React from 'react'
 import type { InputHTMLAttributes } from 'react'
-
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   error?: string
@@ -31,7 +31,13 @@ export const FormInput = ({
           {label}:
         </FormLabel>
       )}
-      <Input name={props.id} {...props} type={type} className={className} aria-invalid={hasError} />
+      <Input
+        name={props.id}
+        {...props}
+        type={type}
+        className={cn('font-medium', className)}
+        aria-invalid={hasError}
+      />
       {help && <div className="text-sm font-normal text-gray-600">{help}</div>}
     </div>
   )

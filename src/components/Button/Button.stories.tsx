@@ -1,3 +1,4 @@
+import { Alert02Icon } from '@hugeicons/core-free-icons'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from './index'
 
@@ -95,5 +96,38 @@ export const Link: Story = {
     variant: 'link',
     size: 'default',
     children: 'Link Button'
+  }
+}
+
+export const WithIcon: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    size: 'default',
+    children: 'Icon Button'
+  }
+}
+
+export const IconOnly: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    size: 'icon'
+  }
+}
+
+export const IconOnlySm: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    size: 'icon-sm'
+  }
+}
+
+export const IconOnlyXs: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    size: 'icon-xs'
   }
 }

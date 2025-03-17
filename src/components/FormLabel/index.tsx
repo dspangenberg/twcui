@@ -1,4 +1,4 @@
-import { Label } from '@/components/ui/label'
+import { Label } from '@/components/ui/originui/label.tsx'
 import { cn } from '@/lib/utils'
 import type { LabelHTMLAttributes, ReactNode } from 'react'
 
