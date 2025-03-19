@@ -1,4 +1,10 @@
 import { Button as ShadcnButton } from '@/components/ui/shadcn/button.tsx'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/shadcn/tooltip.tsx'
 import { cn } from '@/lib/utils.ts'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { LoaderCircleIcon } from 'lucide-react'
@@ -12,11 +18,41 @@ interface ComponentProps extends React.ComponentProps<'button'> {
   asChild?: boolean
   className?: string
   title?: string
+  tooltip?: string
+  forceTitle?: boolean
   icon?: Global.IconSvgElement | null
   iconClassName?: string
 }
 
 export function Button({
+  tooltip = '',
+  forceTitle = false,
+  title = '',
+  size = 'default',
+  ...props
+}: ComponentProps) {
+  if (!forceTitle && title && !tooltip && ['icon', 'icon-sm', 'icon-xs'].includes(size)) {
+    tooltip = title
+    title = ''
+  }
+
+  if (tooltip) {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <BaseButton size={size} {...props} />
+          </TooltipTrigger>
+          <TooltipContent>{tooltip}</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  }
+
+  return <BaseButton size={size} title={title} {...props} />
+}
+
+export function BaseButton({
   variant = 'default',
   size = 'default',
   type = 'button',

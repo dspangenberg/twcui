@@ -1,6 +1,12 @@
 import { Button } from '@/components/Button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger
+} from '@/components/ui/shadcn/dropdown-menu.tsx'
 import { cn } from '@/lib/utils'
 import type React from 'react'
+import { useState } from 'react'
 
 export interface ToolbarProps {
   className?: string
@@ -24,7 +30,16 @@ export interface ToolbarButtonProps {
   iconClassName?: string
   variant?: 'default' | 'secondary'
   title?: string
+  forceTitle?: boolean
   icon: Global.IconSvgElement
+}
+
+export interface ToolbarDropDownButtonProps extends ToolbarButtonProps {
+  children: React.ReactNode
+  side?: 'bottom' | 'left' | 'right' | 'top'
+  align?: 'start' | 'end' | 'center'
+  sideOffset?: number
+  alignOffset?: number
 }
 
 export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
@@ -34,6 +49,8 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   icon
 }) => {
   const buttonVariant = variant === 'default' ? 'outline' : 'ghost'
+  const forceTitle = variant === 'default'
+
   return (
     <YkToolbarButton asChild>
       <Button
@@ -41,6 +58,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         title={title}
         size="icon"
         icon={icon}
+        forceTitle={forceTitle}
         iconClassName="text-primary"
         className={cn(
           'items-center gap-2 px-2.5',
@@ -49,5 +67,39 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
         )}
       />
     </YkToolbarButton>
+  )
+}
+
+export const ToolbarDropDownButton: React.FC<ToolbarDropDownButtonProps> = ({
+  side = 'bottom',
+  align = 'center',
+  sideOffset = 0,
+  alignOffset = 0,
+  variant = 'default',
+  className = '',
+  children = '',
+  title,
+  ...props
+}) => {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger asChild>
+          <YkToolbarButton asChild>
+            <Button variant="ghost" tooltip="" size="icon" icon={props.icon} />
+          </YkToolbarButton>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          side={side}
+          align={align}
+          sideOffset={sideOffset}
+          alignOffset={alignOffset}
+          className={className}
+        >
+          {children}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   )
 }

@@ -116,6 +116,24 @@ export const IconOnly: Story = {
   }
 }
 
+export const IconOnlyTitleAsTooltip: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    title: 'This is a tooltip',
+    size: 'icon'
+  }
+}
+
+export const IconOnlyWithTooltip: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    tooltip: 'This is a tooltip',
+    size: 'icon'
+  }
+}
+
 export const IconOnlySm: Story = {
   args: {
     variant: 'outline',
