@@ -108,9 +108,28 @@ export const WithIcon: Story = {
   }
 }
 
+export const WithIconLoading: Story = {
+  args: {
+    variant: 'outline',
+    icon: Alert02Icon,
+    loading: true,
+    size: 'default',
+    children: 'Icon Button'
+  }
+}
+
 export const IconOnly: Story = {
   args: {
     variant: 'outline',
+    icon: Alert02Icon,
+    size: 'icon'
+  }
+}
+
+export const IconOnlyLoading: Story = {
+  args: {
+    variant: 'outline',
+    loading: true,
     icon: Alert02Icon,
     size: 'icon'
   }

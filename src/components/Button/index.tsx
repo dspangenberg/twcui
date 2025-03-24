@@ -86,8 +86,10 @@ export function BaseButton({
       type={type}
       {...props}
     >
-      {icon && <HugeiconsIcon icon={icon} className={cn(iconSizeClass, iconClassName)} />}
-      {loading && <LoaderCircleIcon className="-ms-1 animate-spin" size={16} aria-hidden="true" />}
+      {!loading && icon && (
+        <HugeiconsIcon icon={icon} className={cn(iconSizeClass, iconClassName)} />
+      )}
+      {loading && <LoaderCircleIcon className="animate-spin" size={16} aria-hidden="true" />}
       {title || children}
     </ShadcnButton>
   )

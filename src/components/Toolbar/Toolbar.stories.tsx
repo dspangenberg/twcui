@@ -25,11 +25,20 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const handeOnClick = () => {
+  console.log('Clicked!')
+}
+
 export const Primary: Story = {
   args: {},
   render: args => (
     <Toolbar className="w-md" {...args}>
-      <ToolbarButton variant="default" icon={NoteEditIcon} title="Datensatz bearbeiten" />
+      <ToolbarButton
+        variant="default"
+        icon={NoteEditIcon}
+        title="Datensatz bearbeiten"
+        onClick={handeOnClick}
+      />
       <ToolbarButton icon={NoteEditIcon} title="Datensatz bearbeiten" />
       <ToolbarDropDownButton icon={MoreVerticalIcon} title="Datensatz bearbeiten">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

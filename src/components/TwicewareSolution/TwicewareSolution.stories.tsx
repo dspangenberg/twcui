@@ -23,7 +23,9 @@ export const Primary: Story = {
   args: {
     appWebsite: 'https://example.com',
     appName: 'Example App',
-    hideCopyright: false
+    hideCopyright: false,
+    copyrightHolder: 'Example Inc.',
+    copyrightHolderWebsite: 'https://example.com/about'
   }
 }
 

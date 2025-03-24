@@ -6,7 +6,6 @@ import {
 } from '@/components/ui/shadcn/dropdown-menu.tsx'
 import { cn } from '@/lib/utils'
 import type React from 'react'
-import { useState } from 'react'
 
 export interface ToolbarProps {
   className?: string
@@ -19,9 +18,7 @@ import {
 
 export const Toolbar: React.FC<ToolbarProps> = ({ className = '', children }) => {
   return (
-    <YkToolbar className={cn('bg-sidebar justify-end space-x-2 p-1', className)}>
-      {children}
-    </YkToolbar>
+    <YkToolbar className={cn('bg-sidebar justify-end gap-1 p-1', className)}>{children}</YkToolbar>
   )
 }
 
@@ -32,6 +29,8 @@ export interface ToolbarButtonProps {
   title?: string
   forceTitle?: boolean
   icon: Global.IconSvgElement
+  disabled?: boolean
+  onClick?: () => void
 }
 
 export interface ToolbarDropDownButtonProps extends ToolbarButtonProps {
@@ -46,13 +45,15 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = ({
   className = '',
   title = '',
   variant = 'secondary',
-  icon
+  icon,
+  disabled = false,
+  onClick
 }) => {
   const buttonVariant = variant === 'default' ? 'outline' : 'ghost'
   const forceTitle = variant === 'default'
 
   return (
-    <YkToolbarButton asChild>
+    <YkToolbarButton asChild onClick={onClick} disabled={disabled}>
       <Button
         variant={buttonVariant}
         title={title}
@@ -81,10 +82,9 @@ export const ToolbarDropDownButton: React.FC<ToolbarDropDownButtonProps> = ({
   title,
   ...props
 }) => {
-  const [open, setOpen] = useState(false)
   return (
     <>
-      <DropdownMenu open={open} onOpenChange={setOpen}>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <YkToolbarButton asChild>
             <Button variant="ghost" tooltip="" size="icon" icon={props.icon} />

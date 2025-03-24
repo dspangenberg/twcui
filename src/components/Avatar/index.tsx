@@ -32,7 +32,7 @@ const colors = [
 interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   fullname?: string
   initials?: string
-  src?: string
+  src?: string | null
   size?: 'sm' | 'md' | 'lg'
   className?: string
 }
@@ -40,7 +40,7 @@ interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimit
 export function Avatar({
   fullname = '',
   initials = '',
-  src = '',
+  src = null,
   className = '',
   size = 'md'
 }: AvatarProps) {
@@ -70,13 +70,14 @@ export function Avatar({
     }
   }, [fullname])
 
+  // @ts-ignore
   return (
     <div className="border rounded-full border-border" data-testid="avatar-container">
       <ShadcnAvatar
         className={cn('rounded-full border-transparent border-2', avatarSizeClass, className)}
         data-testid="avatar"
       >
-        <ShadcnAvatarImage src={src} alt={fullname} />
+        <ShadcnAvatarImage src={src ?? undefined} alt={fullname} />
         <ShadcnAvatarFallback
           style={{ backgroundColor, color: textColor }}
           className={cn('rounded-full', fallBackFontSize)}
