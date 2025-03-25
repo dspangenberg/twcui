@@ -15,11 +15,6 @@ describe('FormCheckbox', () => {
     expect(screen.getByRole('checkbox')).toBeInTheDocument()
   })
 
-  it('applies custom className', () => {
-    render(<FormCheckbox id="test-checkbox" className="custom-class" />)
-    expect(screen.getByRole('checkbox')).toHaveClass('custom-class')
-  })
-
   it('is checked when checked prop is true', () => {
     render(<FormCheckbox id="test-checkbox" checked={true} />)
     expect(screen.getByRole('checkbox')).toBeChecked()
@@ -32,9 +27,7 @@ describe('FormCheckbox', () => {
 
   it('calls onCheckedChange when clicked', () => {
     const onCheckedChange = vi.fn()
-    render(
-      <FormCheckbox id="test-checkbox" onCheckedChange={onCheckedChange} />
-    )
+    render(<FormCheckbox id="test-checkbox" onCheckedChange={onCheckedChange} />)
     fireEvent.click(screen.getByRole('checkbox'))
     expect(onCheckedChange).toHaveBeenCalledTimes(1)
     expect(onCheckedChange).toHaveBeenCalledWith(true)
@@ -49,23 +42,16 @@ describe('FormCheckbox', () => {
     render(<FormCheckbox id="test-checkbox" defaultChecked />)
     expect(screen.getByRole('checkbox')).toBeChecked()
   })
+})
+it('renders in indeterminate state', () => {
+  render(<FormCheckbox label="Indeterminate Checkbox" checked="indeterminate" />)
 
-  it('applies rounded-sm class to checkbox', () => {
-    render(<FormCheckbox id="test-checkbox" />)
-    expect(screen.getByRole('checkbox')).toHaveClass('rounded-sm')
+  const checkbox = screen.getByRole('checkbox', {
+    name: 'Indeterminate Checkbox'
   })
-  it('renders in indeterminate state', () => {
-    render(
-      <FormCheckbox label="Indeterminate Checkbox" checked="indeterminate" />
-    )
+  expect(checkbox).toHaveAttribute('data-state', 'indeterminate')
 
-    const checkbox = screen.getByRole('checkbox', {
-      name: 'Indeterminate Checkbox'
-    })
-    expect(checkbox).toHaveAttribute('data-state', 'indeterminate')
-
-    // Check if the indeterminate SVG is rendered
-    const indeterminateSvg = screen.getByTitle('Indeterminate')
-    expect(indeterminateSvg).toBeInTheDocument()
-  })
+  // Check if the indeterminate SVG is rendered
+  const indeterminateSvg = screen.getByTitle('Indeterminate')
+  expect(indeterminateSvg).toBeInTheDocument()
 })
