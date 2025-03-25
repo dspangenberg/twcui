@@ -40,24 +40,6 @@ export const Playground: Story = {
     )
   },
   args: {
-    label: 'E-Mail',
     required: true
-  }
-}
-
-export const WithError: Story = {
-  args: {
-    label: 'E-Mail',
-    value: 'danny.spangenberg@twiceware.de',
-    required: true,
-    error: 'Bitte eine gültige E-Mail-Adresse eingeben.'
-  }
-}
-
-export const WithHelp: Story = {
-  args: {
-    label: 'E-Mail',
-    required: true,
-    help: 'Bitte eine gültige E-Mail-Adresse eingeben.'
   }
 }

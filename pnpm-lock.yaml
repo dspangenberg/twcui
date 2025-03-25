@@ -44,9 +44,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-      git:
-        specifier: link:github.com:dspangenberg/twcui.git
-        version: link:github.com:dspangenberg/twcui.git
       lucide-react:
         specifier: ^0.479.0
         version: 0.479.0(react@19.0.0)
