@@ -27,9 +27,7 @@
   },
   "module": "./dist/main.js",
   "exports": "./dist/main.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "types": "./dist/main.d.ts",
   "peerDependencies": {
     "@radix-ui/react-checkbox": "^1.1.4",
