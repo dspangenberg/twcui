@@ -1,29 +1,27 @@
 import { FormLabel } from '@/components/FormLabel'
-import { Input } from '@/components/ui/originui/input.tsx'
+import { Textarea } from '@/components/ui/originui/textarea.tsx'
 import { cn } from '@/lib/utils'
 import type React from 'react'
-import type { InputHTMLAttributes } from 'react'
-export interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+
+interface FormInputProps extends React.ComponentProps<'textarea'> {
   label?: string
   error?: string
   help?: string
+  rows?: number
   required?: boolean
-  passwordRules?: string
 }
 
-export const FormInput = ({
+export const FormTextarea = ({
   ref,
-  type = 'text',
   required = false,
-  autoComplete = 'off',
   className = '',
-  passwordRules = '',
   help = '',
+  rows = 2,
   label,
   error,
   ...props
 }: FormInputProps & {
-  ref?: React.RefObject<HTMLInputElement>
+  ref?: React.RefObject<HTMLTextAreaElement>
 }) => {
   const hasError = !!error
 
@@ -34,18 +32,17 @@ export const FormInput = ({
           {label}:
         </FormLabel>
       )}
-      <Input
-        name={props.id}
+      <Textarea
+        ref={ref}
+        rows={rows}
         {...props}
-        type={type}
-        autoComplete={autoComplete}
-        data-password-rules={passwordRules}
         className={cn('font-medium text-base rounded-sm shadow-none', className)}
         aria-invalid={hasError}
       />
-      {help && <div className="text-xs font-normal text-gray-600">{help}</div>}
+      {help && <div className="text-sm font-normal text-gray-600">{help}</div>}
+      {error && <div className="text-sm font-normal text-red-600">{error}</div>}
     </div>
   )
 }
 
-FormInput.displayName = 'FormInput'
+FormTextarea.displayName = 'FormTextarea'
