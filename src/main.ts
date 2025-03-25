@@ -11,6 +11,7 @@ export { LogoSpinner } from './components/LogoSpinner'
 export { TwicewareSolution } from './components/TwicewareSolution'
 export { FormTextarea } from './components/FormTextarea'
 export { Toolbar, ToolbarButton, ToolbarDropDownButton } from './components/Toolbar'
+import '../src/index.css'
 export {
   Toolbar as YkToolbar,
   ToolbarButton as YkToolbarButton
